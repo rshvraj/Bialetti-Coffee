@@ -45,7 +45,9 @@ const Navbar = () => {
                         </Button>
 
                         <Spacer />
+                        <Link to='/'>
                         <Image src='https://www.bialetti.com/media/logo/default/5-layers_3x.png' alt="logo" width={100} height={50} ml='10%' />
+                        </Link>
                         <Spacer />
 
                         <Box className={styles.loginSection}>
