@@ -1,0 +1,21 @@
+#card_container{
+   background-color: aliceblue;
+   border-top-right-radius: 25px;
+   border-bottom-left-radius: 25px;
+   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+
+#card_container :hover{
+   
+   transform: scale(1.5);
+}
+
+#card_container:hover {  
+   cursor: pointer;
+   content: url("https://www.bialetti.com/media/catalog/product/cache/e8aa104d064dcf81ed9afb1c9c6893f4/e/s/esperto-grani-top-view-ambientata_quadrata.jpg");
+}
+
+#card_container img:hover {  
+   
+} 
