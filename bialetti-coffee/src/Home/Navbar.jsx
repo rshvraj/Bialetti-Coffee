@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     Box,
     Container,
@@ -6,19 +6,36 @@ import {
     Flex,
     Spacer,
     Image,
-    } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { SearchIcon } from '@chakra-ui/icons';
 import { ViewIcon } from '@chakra-ui/icons';
-import {Link as RouterLink} from 'react-router-dom';
-
+import { Link as RouterLink } from 'react-router-dom';
+import { TweenMax, Power3 } from 'gsap/gsap-core';
+import styles from './navbar.module.css';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import {Link} from 'react-router-dom';
 
 
 const Navbar = () => {
-    
+    const logoItem = useRef(null);
+
+    useEffect(() => {
+        const myAnime = logoItem.current;
+        TweenMax.from(
+            myAnime,
+            1,
+            {
+                opacity: 0,
+                y: -50,
+                ease: Power3.easeOut
+            }
+        )
+    }, [])
+
     return (
         <div>
-            <Box p={2}>
+            <Box p={2} ref={logoItem}>
                 <Container maxW="container.xlg">
                     <Flex justifyContent="space-between" alignItems="flex-end">
 
@@ -31,26 +48,31 @@ const Navbar = () => {
                         <Image src='https://www.bialetti.com/media/logo/default/5-layers_3x.png' alt="logo" width={100} height={50} ml='10%' />
                         <Spacer />
 
-                        <Box>
+                        <Box className={styles.loginSection}>
                             <Button variant="ghost">
                                 <SearchIcon />
                             </Button>
 
-                            <RouterLink to='/'>
-                            <Button variant="ghost">
-                                Login
-                            </Button>
+                            <RouterLink to='/'> 
+                                <Button variant="ghost">
+                                    Login
+                                </Button>
                             </RouterLink>
- 
+
                             <Button variant="ghost">
                                 Cart
                             </Button>
                         </Box>
 
+
+                        <Button variant="ghost" className={styles.hamburger}>
+                            <HamburgerIcon />
+                        </Button>
+
                     </Flex>
 
 
-                    <Flex alignItems="flex-end">
+                    <Flex className={styles.secNav} alignItems="flex-end">
 
                         <Box
                             as="span"
@@ -163,7 +185,7 @@ const Navbar = () => {
                                 transition: 'opacity 0.5s, transform 0.5s',
                             }}
                         >
-                            SHOP
+                        <Link to='/products'>SHOP</Link>
                         </Box>
                         <Spacer />
                         <Box
