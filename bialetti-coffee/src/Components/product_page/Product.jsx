@@ -24,7 +24,7 @@ import { Title } from "./Title";
         return url;
     }
     
-    const fetching = async ()=>{
+    const fetching = async (page)=>{
         try{ 
           const myUrl = myApi(`https://bialetti-coffee.onrender.com/products?_page=${page}&_limit=6`,filterBy,sortBy);
           const response = await axios.get(myUrl);
@@ -39,8 +39,8 @@ import { Title } from "./Title";
     const length = data.length;
 
    useEffect(()=>{
-   fetching();
-   },[filterBy,sortBy])
+   fetching(page);
+   },[filterBy,sortBy,page])
    
    const handleGroundsFilter = ()=>{
     setFilterBy("Grounds");
@@ -58,7 +58,7 @@ const handleAccessFilter = ()=>{
 
     return(
         <div id="Main_div">
-            <label style={{paddingLeft:"68%"}}>
+            <label className="sort_label">
           Sort by:
           <select className="sort-by" onChange={(b)=>{
             setSortBy(b.target.value)
@@ -68,9 +68,9 @@ const handleAccessFilter = ()=>{
             <option value="price">Price</option>
           </select>
         </label>
-        <div id="Main_Container" style={{display:"flex",justifyContent:"space-around"}}>
+        <div className="Main_Container" >
 
-        <div id="filter_container">
+        <div className="filter_container">
         {/* <label>Filter-by : */}
         <h1>Filter by :</h1>
         <h3 value="Grounds" onClick={handleGroundsFilter} style={{cursor:"pointer"}}>Grounds</h3>
@@ -80,7 +80,7 @@ const handleAccessFilter = ()=>{
         {/* </label> */}
         </div>
 
-    <div  style={{display:"grid" ,gridTemplateColumns:"repeat(3,1fr)",marginTop:"20px"}} >
+    <div   className="right_container" >
         {
             data.map((elem)=>(
                 <Card  key={elem.id}{...elem} /> 
@@ -89,7 +89,7 @@ const handleAccessFilter = ()=>{
         }  
     </div>
     </div>
-    <Buttons length={length} setPage={setPage} page={page}/>
+    <Buttons length={length} setPage={setPage} page={page} fetching={fetching}/>
     </div>
     )
 }
