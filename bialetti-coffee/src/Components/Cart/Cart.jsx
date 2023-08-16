@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
 import {
   Box,
   Flex,
@@ -167,8 +169,7 @@ const Cart = ({ cartItems }) => {
         <Text fontSize="xl">
           Subtotal: ${subtotal}
         </Text>
-        
-        <Button
+<RouterLink to='/payment'>  <Button
           w="100%"
           size="lg"
           colorScheme="gray"
@@ -176,7 +177,8 @@ const Cart = ({ cartItems }) => {
           color="white"
         >
           Checkout
-        </Button>
+        </Button></RouterLink>
+      
       </Box>
     </Flex>
   );
