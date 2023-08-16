@@ -26,7 +26,7 @@ export const Product = ()=>{
     
     const fetching = async (page)=>{
         try{ 
-          const myUrl = myApi(`http://localhost:8080/products?_page=${page}&_limit=6`,filterBy,sortBy);
+          const myUrl = myApi(`https://bialetti-coffee.onrender.com/products?_page=${page}&_limit=6`,filterBy,sortBy);
           const response = await axios.get(myUrl);
         //   console.log(response);
           setData(response.data)

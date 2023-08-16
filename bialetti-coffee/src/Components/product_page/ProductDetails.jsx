@@ -12,7 +12,7 @@ export const ProductDetails = () => {
   
   const fetching = async (page)=>{
     try{ 
-      const response = await axios.get(`http://localhost:8080/products/${id}`);
+      const response = await axios.get(`https://bialetti-coffee.onrender.com/products/${id}`);
       console.log(response.data);
        setMyData(response.data)
     }
