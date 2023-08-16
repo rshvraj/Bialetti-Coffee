@@ -7,7 +7,7 @@ import { Title } from "./Title";
 
 
 
- const Product = ()=>{
+export const Product = ()=>{
     const[data,setData] = useState([]);
     const[filterBy,setFilterBy] = useState("");
     const[sortBy,setSortBy] = useState("");
@@ -26,7 +26,7 @@ import { Title } from "./Title";
     
     const fetching = async (page)=>{
         try{ 
-          const myUrl = myApi(`https://bialetti-coffee.onrender.com/products?_page=${page}&_limit=6`,filterBy,sortBy);
+          const myUrl = myApi(`http://localhost:8080/products?_page=${page}&_limit=6`,filterBy,sortBy);
           const response = await axios.get(myUrl);
         //   console.log(response);
           setData(response.data)
@@ -36,7 +36,6 @@ import { Title } from "./Title";
         }
     }
 
-    const length = data.length;
 
    useEffect(()=>{
    fetching(page);
@@ -60,7 +59,7 @@ const handleAccessFilter = ()=>{
         <div id="Main_div">
             <label className="sort_label">
           Sort by:
-          <select className="sort-by" onChange={(b)=>{
+          <select className="sort_by" onChange={(b)=>{
             setSortBy(b.target.value)
           }}>
             <option value="">Select an option</option>
@@ -69,7 +68,8 @@ const handleAccessFilter = ()=>{
           </select>
         </label>
         <div className="Main_Container" >
-
+        
+        {/* <div id="left-div"> */}
         <div className="filter_container">
         {/* <label>Filter-by : */}
         <h1>Filter by :</h1>
@@ -77,10 +77,13 @@ const handleAccessFilter = ()=>{
         <h3 value="Mugs" onClick={handleMugsFilter} style={{cursor:"pointer"}}>Mugs</h3>
         <h3 value="Mugs" onClick={handleMakersFilter} style={{cursor:"pointer"}}>Coffee Makers</h3>
         <h3 value="Mugs" onClick={handleAccessFilter} style={{cursor:"pointer"}}>Accesseries</h3>
-        {/* </label> */}
         </div>
+         {/* <div>
+          <img src="https://cdn.vectorstock.com/i/1000x1000/70/04/grunge-coffee-background-vertical-vector-87004.webp" width="50%" />
+         </div> */}
+        {/* </div> */}
 
-    <div   className="right_container" >
+    <div  className="right_container">
         {
             data.map((elem)=>(
                 <Card  key={elem.id}{...elem} /> 
@@ -89,9 +92,8 @@ const handleAccessFilter = ()=>{
         }  
     </div>
     </div>
-    <Buttons length={length} setPage={setPage} page={page} fetching={fetching}/>
+
+    <Buttons setPage={setPage} page={page} fetching={fetching}/>
     </div>
     )
 }
-
-export default Product;
