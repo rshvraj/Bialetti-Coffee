@@ -1,16 +1,14 @@
-import AllRoutes from './AllRoutes/AllRoutes';
-import './App.css';
-import Navbar from './Home/Navbar';
-
-
-
+import React from "react";
+import Payment from "./Payment";
+// Import your PaymentDetails component
+import "./App.css";
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <AllRoutes/>
+     
+      <Payment/>
     </div>
   );
 }

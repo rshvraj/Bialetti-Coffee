@@ -1,38 +1,165 @@
-.App {
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+ width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+#sendOtp {
+  display: block;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin: auto;
+  width: 20%;
+  background-color: #3182ce;
+  color: white;
+}
+
+
+
+/* UserDetails component styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* PaymentDetails component styles */
+.payment-group {
+  margin-bottom: 20px;
+}
+
+.payment-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+.expiry-cvv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+/* OTPVerification component styles */
+.modal-content {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ThankYouPage component styles */
+.thankyou-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  color: #007bff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.price-section h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 2%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.inputBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5%;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.inputBox span {
+  font-weight: bold;
+ font-size: 20px;
+}
+
+.inputBox img {
+  width: 200px;
+  height: 50 px;
+}
+/* thankyou.css */
+.thankyou-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.thankyou-container p {
+  font-size: 16px;
+  font-weight: bolder;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.thankyoubox {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.Thankyoubutton {
+ 
+  color: #3182ce;
 }
