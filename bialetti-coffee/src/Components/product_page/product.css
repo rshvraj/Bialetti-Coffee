@@ -9,7 +9,7 @@
     margin-top: 25px;
 }
 
-#Main_div{
+.Main_div{
     background-color: rgb(246, 232, 212);
 }
 
@@ -38,6 +38,9 @@ justify-content: space-around;
     margin-top: 2%;
     border-radius: 2%;
 }
+.filter_container>h1{
+    font-weight: bold;
+}
 
 @media only screen and (min-width:830px) and (max-width:1150px){
   .right_container{
@@ -63,5 +66,18 @@ justify-content: space-around;
     .filter_container{
         margin-left: 24%;
     }
+    .filter_container> h1{
+        margin-right: 75%;
+    }
+    .sort_label>h1{
+        margin-right: 10%;
+    }
+    .sort_by{
+        margin-right: 10%;
+    }
+    .button_compo{
+        margin-right: 15%;
+    }
+    
   }
 

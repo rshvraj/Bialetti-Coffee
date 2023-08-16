@@ -56,9 +56,9 @@ const handleAccessFilter = ()=>{
 }
 
     return(
-        <div id="Main_div">
+        <div className="Main_div">
             <label className="sort_label">
-          Sort by:
+          <h1>Sort by:</h1>
           <select className="sort_by" onChange={(b)=>{
             setSortBy(b.target.value)
           }}>
@@ -92,8 +92,11 @@ const handleAccessFilter = ()=>{
         }  
     </div>
     </div>
-
-    <Buttons setPage={setPage} page={page} fetching={fetching}/>
+    
+    <div className="button_compo">
+    <Buttons className="button_compo" setPage={setPage} page={page} fetching={fetching}/>
+    </div>
+    
     </div>
     )
 }

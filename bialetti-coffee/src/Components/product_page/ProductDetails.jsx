@@ -106,10 +106,13 @@ window.addEventListener('resize', slideImage);
           <div class = "product-price">
             <p class = "last-price">Price: <span>{myData.price}</span></p>
           </div>
+          <div className="add_to_cart">
+          <button>Add to Cart</button>
+          </div>
 
         </div>
 
-           <button>Add to Cart</button>
+          
        
       </div>
       <hr></hr>
