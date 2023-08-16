@@ -4,9 +4,12 @@ import { useParams } from 'react-router-dom'
 import "./productDetails.css";
 import { ButtonGroup } from '@chakra-ui/react';
 
+
  const ProductDetails = () => {
 
   let {id} = useParams();
+  const [cartItems, setCartItems] = useState([]);
+
 
   const[myData,setMyData] = useState({});
   
@@ -51,7 +54,9 @@ window.addEventListener('resize', slideImage);
 
 
 
-
+const addToCart = () => {
+  setCartItems([...cartItems, myData]);
+};
 
 
   return (
@@ -107,7 +112,10 @@ window.addEventListener('resize', slideImage);
             <p class = "last-price">Price: <span>{myData.price}</span></p>
           </div>
           <div className="add_to_cart">
-          <button>Add to Cart</button>
+         
+          <button onClick={addToCart}>Add to Cart</button>
+
+         
           </div>
 
         </div>

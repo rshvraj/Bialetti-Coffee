@@ -55,15 +55,15 @@ const Navbar = () => {
                                 <SearchIcon />
                             </Button>
 
-                            <RouterLink to='/'> 
+                            <RouterLink to='/login'> 
                                 <Button variant="ghost">
                                     Login
                                 </Button>
                             </RouterLink>
-
-                            <Button variant="ghost">
+                            <RouterLink to='/cart'> <Button variant="ghost">
                                 Cart
-                            </Button>
+                            </Button></RouterLink>
+                           
                         </Box>
 
 

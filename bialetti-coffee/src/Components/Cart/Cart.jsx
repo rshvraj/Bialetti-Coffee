@@ -14,27 +14,45 @@ import {
   Center,
   Button
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons'; // Import the plus sign icon
+import { AddIcon } from '@chakra-ui/icons';
+import { MinusIcon } from '@chakra-ui/icons';
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [itemCounts, setItemCounts] = useState({});
+  const [subtotal, setSubtotal] = useState();
+
 
   useEffect(() => {
-    // Fetch data from the provided API
     fetch('https://bialetti-coffee.onrender.com/products')
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+        // Initialize cart with the same data for demonstration purposes
+        setCart(data);
+      })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-  // Display only the first 3 products
-  const displayedProducts = products.slice(0, 3);
+  const displayedProducts = products.slice(3, 5);
+  const displayedCart = cart.slice(0, 2);
+
+  const calculateSubtotal = () => {
+    let newSubtotal = 0;
+    displayedCart.forEach((cartItem) => {
+      const itemPrice = parseFloat(cartItem.price.replace('$', ''));
+      const itemCount = itemCounts[cartItem.id] || 1;
+      newSubtotal += itemPrice * itemCount;
+    });
+    return newSubtotal.toFixed(2);
+  };
+  
+
 
   return (
     <Flex h="100vh">
-      {/* Left half */}
       <Box w="50%" bg="gray.800" color="white" p={8}>
-        {/* Your content for the left side */}
         <Heading as="h4" size="md">
           You may also like
         </Heading>
@@ -67,7 +85,6 @@ const Cart = () => {
               </CardBody>
 
               <CardFooter justifyContent="center">
-                {/* Center-align the icon button */}
                 <IconButton
                   aria-label="Add to cart"
                   variant="solid"
@@ -80,11 +97,10 @@ const Cart = () => {
         ))}
       </Box>
 
-      {/* Right half */}
       <Box w="50%" p={8}>
         <Center>
           <Heading as="h1" size="lg" mb={4}>
-            My Cart (2)
+            My Cart
           </Heading>
         </Center>
 
@@ -93,7 +109,65 @@ const Cart = () => {
           Your Order Qualifies as free shipping
         </Heading>
 
-        {/* Right side content */}
+        {displayedCart.map((cartItem) => (
+          <Card
+            direction={{ base: 'column', sm: 'row' }}
+            overflow="hidden"
+            variant="outline"
+            key={cartItem.id}
+          >
+            <Image
+              objectFit="cover"
+              maxW={{ base: '100%', sm: '200px' }}
+              src={cartItem.img}
+            />
+            <Stack>
+              <CardBody>
+                <Heading size="md">{cartItem.title}</Heading>
+                <Text py="2">{cartItem.price}</Text>
+              </CardBody>
+              <CardFooter>
+                <Flex alignItems="center">
+                  <IconButton
+                    aria-label="Decrease"
+                    variant="solid"
+                    colorScheme="blue"
+                    icon={<MinusIcon />}
+                    onClick={() => {
+                      setItemCounts((prevCounts) => ({
+                        ...prevCounts,
+                        [cartItem.id]: (prevCounts[cartItem.id] || 1) - 1,
+                      }));
+                      setSubtotal(calculateSubtotal());
+
+                    }}
+                  />
+                  <Text mx={2}>{itemCounts[cartItem.id] || 1}</Text>
+                  <IconButton
+                    aria-label="Increase"
+                    variant="solid"
+                    colorScheme="blue"
+                    icon={<AddIcon />}
+                    onClick={() => {
+                      setItemCounts((prevCounts) => ({
+                        ...prevCounts,
+                        [cartItem.id]: (prevCounts[cartItem.id] || 1) + 1,
+                      }));
+                      setSubtotal(calculateSubtotal());
+
+                    }}
+                  />
+                </Flex>
+              </CardFooter>
+            </Stack>
+          </Card>
+        ))}
+
+        <Divider my={4} />
+        <Text fontSize="xl">
+          Subtotal: ${subtotal}
+        </Text>
+        
         <Button
           w="100%"
           size="lg"
