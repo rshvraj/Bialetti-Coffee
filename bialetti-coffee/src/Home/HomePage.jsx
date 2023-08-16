@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
     Box,
     Button,
@@ -21,88 +21,117 @@ import {
 import { ChevronRightIcon, ChevronLeftIcon } from '@chakra-ui/icons'
 import Footer from './Footer';
 import Testimonials from './Testimonial';
+import { TweenMax,Power3 } from 'gsap';
+import coffee1 from './images/Coffee1.png';
+import coffee3 from './images/Coffee3.png';
+import coffee4 from './images/coffee4.png';
+import coffee5 from './images/coffee5.png';
+import {gsap} from 'gsap';
+import styles from './home.module.css';
 
 const HomePage = () => {
-
-    const images = [
-        'https://www.bialetti.com/media/wysiwyg/featured-BUONGIORNO-1_1.jpg',
-        'https://www.bialetti.com/media/wysiwyg/featured-SOTTO-COPERCHIO-1_1.jpg',
-        'https://www.bialetti.com/media/wysiwyg/torrefazione.png',
-        'https://www.bialetti.com/media/wysiwyg/featured-FONDI-CAFFE_1.jpg'
-        // Add more image paths
-    ];
-
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    const previousImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? images.length - 1 : prevIndex - 1
-        );
-    };
-
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === images.length - 1 ? 0 : prevIndex + 1
-        );
-    };
+    const logoItem1 = useRef(null);
+    const logoItem2 = useRef(null);
+    const logoItem3 = useRef(null);
+    const txt = useRef(null);
+    const btn1 = useRef(null);
 
     useEffect(() => {
-        const autoSlide = setInterval(() => {
-            nextImage();
-        }, 3000); // Slide every 5 seconds
+        let myAnime1 = logoItem1.current;
+        let myAnime2 = logoItem2.current;
+        let myAnime3 = logoItem3.current;
+        let txtAnime = txt.current;
+        let btnAnime = btn1.current;
 
-        return () => {
-            clearInterval(autoSlide);
-        };
-    }, [currentImageIndex]);
-
+        gsap.from(
+            myAnime2,
+            1,{
+                opacity:0,
+                x: -40,
+                ease: Power3.easeOut,
+                delay:1
+            }
+        )
+        gsap.from(
+            myAnime1,
+            1,{
+                opacity:0,
+                y: 40,
+                ease: Power3.easeOut,
+                delay:0.5
+            }
+        )
+        gsap.from(
+            myAnime3,
+            1,{
+                opacity:0,
+                x: 40,
+                ease: Power3.easeOut,
+                delay:1.5
+            }
+        )
+        gsap.from(
+            txtAnime,
+            1,{
+                opacity:0,
+                y: -40,
+                ease: Power3.easeOut,
+                delay:2
+            }
+        )
+        gsap.to(
+            btnAnime,
+            1,{
+                css:{visibility:"visible"},
+                opacity:1,
+                y: 40,
+                ease: Power3.easeOut,
+                delay:2.5,               
+            }
+        )
+    },[])
 
     return (
         <Box>
-
             {/* ---------------Sliding box section---------------- */}
-            <Box position="relative" maxW="500px" mx="auto" mt={10}>
+            <Box position="relative" mt={10} p={5}>
+                <Flex className={styles.gsapImage}>
+                <Box className={styles.coffee4}>    
                 <Image
-                    src={images[currentImageIndex]}
-                    alt={`Slideshow Image ${currentImageIndex + 1}`}
-                    w="100%"
-                    h="400px"
-                    rounded="md"
-                    boxShadow="md"
+                    ref={logoItem2}
+                    src={coffee4}
+                    alt='image2' 
                 />
-
-                <Flex
-                    position="absolute"
-                    justifyContent="space-between"
-                    w="100%"
-                    p={4}
-                    top="50%"
-                    transform="translateY(-50%)"
-                >
-                    <IconButton
-                        aria-label="Previous Image"
-                        icon={<ChevronLeftIcon />}
-                        onClick={previousImage}
-                        colorScheme={useColorModeValue('gray', 'white')}
-                    />
-                    <IconButton
-                        aria-label="Next Image"
-                        icon={<ChevronRightIcon />}
-                        onClick={nextImage}
-                        colorScheme={useColorModeValue('gray', 'white')}
-                    />
+                </Box>
+                <Spacer/>
+                <Box className={styles.coffee1}>
+                <Image
+                    ref={logoItem1}
+                    src={coffee1}
+                    alt={`Slideshow Image`}
+                />
+                </Box>
+                <Spacer/>
+                <Box className={styles.coffee5}>
+                <Image
+                    ref={logoItem3}
+                    src={coffee5}
+                    alt='image3'
+                />
+                </Box>
+                
                 </Flex>
             </Box>
 
-            <Text fontSize='xl' as='b'>THE REAL ITALIAN COFFEE EXPERIENCE,
+            <Text ref={txt} fontSize='xl' as='b'>THE REAL ITALIAN COFFEE EXPERIENCE,
                 <br />
                 NOW SUITABLE FOR INDUCTION
             </Text>
             <br />
-            <Button colorScheme='gray'>FIND OUT MORE <ChevronRightIcon /></Button>
+            <Button className={styles.findBtn} colorScheme='blue' ref={btn1} >FIND OUT MORE <ChevronRightIcon /></Button>
 
             {/* ------------------Three Product Section-------------------- */}
-            <Flex>
+            <Flex p={4} className={styles.productImage}>
                 <Card maxW='sm'>
                     <CardBody>
                         <Image
@@ -201,8 +230,8 @@ const HomePage = () => {
                     >
                         <Image
                             objectFit='cover'
-                            maxW={{ base: '100%', sm: '300px' }}
-                            src='https://twochimpscoffee.com/wp-content/uploads/2020/04/web-62-600x600.jpg.webp'
+                            width="30%"
+                            src={coffee3}
                             alt='Caffe Latte'
                         />
 
@@ -228,8 +257,8 @@ const HomePage = () => {
             <Box p={4}>
                 <Heading size='3xl'>INSPIRATION</Heading>
                 <Heading size='xl' >& News</Heading>
-                <Flex>
-                    <Box width='40%'>
+                <Flex className={styles.inspirationBox}>
+                    <Box className={styles.inspirationPara} >
                         <Text fontSize='3xl' fontFamily="Arial, sans-serif" color='brown' mt={20}>"THERE IS ONLY ONE SECRET TO THE PERFECT ITALIAN COFFEE: SHARING"</Text>
                         <Text fontSize='xl' fontFamily="Arial, sans-serif" mt={5}>We Italians love coffee, but we love sharing coffee with our nearest and dearest even more.
                             <br />
