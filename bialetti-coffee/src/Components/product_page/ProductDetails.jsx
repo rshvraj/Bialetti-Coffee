@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import "./productDetails.css";
 import { ButtonGroup } from '@chakra-ui/react';
 
-export const ProductDetails = () => {
+ const ProductDetails = () => {
 
   let {id} = useParams();
 
@@ -125,4 +125,6 @@ window.addEventListener('resize', slideImage);
     </div>
   )
 }
+
+export default ProductDetails;
 

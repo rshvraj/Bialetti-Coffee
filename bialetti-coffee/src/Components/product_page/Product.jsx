@@ -7,7 +7,7 @@ import { Title } from "./Title";
 
 
 
-export const Product = ()=>{
+const Product = ()=>{
     const[data,setData] = useState([]);
     const[filterBy,setFilterBy] = useState("");
     const[sortBy,setSortBy] = useState("");
@@ -100,3 +100,5 @@ const handleAccessFilter = ()=>{
     </div>
     )
 }
+
+export default Product;
