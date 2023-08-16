@@ -7,6 +7,9 @@ const Cart = () => {
       {/* Left half */}
       <Box w="50%" bg="gray.800" color="white" p={8}>
         {/* Your content for the left side */}
+        <Heading>
+          You may also like 
+          </Heading>
       </Box>
 
       {/* Right half */}

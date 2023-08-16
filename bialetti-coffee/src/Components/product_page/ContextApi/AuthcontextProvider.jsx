@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 export const AuthContext= createContext();
-export default function AuthcontextProvider({children}) {
+ function AuthcontextProvider({children}) {
     const [isLogged, setIsLogged]=useState(false)
     const login = () => {
         setIsLogged(true);
@@ -15,3 +15,4 @@ export default function AuthcontextProvider({children}) {
         </AuthContext.Provider>
       );
 }
+export default AuthcontextProvider
