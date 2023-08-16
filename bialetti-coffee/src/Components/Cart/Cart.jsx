@@ -102,7 +102,7 @@ const Cart = ({ cartItems }) => {
       <Box w="50%" p={8}>
         <Center>
           <Heading as="h1" size="lg" mb={4}>
-            My Cart
+             Cart
           </Heading>
         </Center>
 
