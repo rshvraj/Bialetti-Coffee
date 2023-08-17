@@ -2,17 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {  createBrowserRouter,
-  RouterProvider,} from 'react-router-dom'
-import UserDetails from './UserDetails';
-
+import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from '@chakra-ui/react';
+import {BrowserRouter} from 'react-router-dom';
+import  AuthcontextProvider  from './Components/product_page/ContextApi/AuthcontextProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-   {/* <RouterProvider router={routes}/> */}
-   <App />
-  </React.StrictMode>
+  <ChakraProvider>
+    <BrowserRouter>
+    <AuthcontextProvider>
+      <App />
+    </AuthcontextProvider>
+    </BrowserRouter>
+  </ChakraProvider>
 );
 
 
