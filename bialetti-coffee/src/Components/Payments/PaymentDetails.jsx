@@ -83,7 +83,7 @@ const PaymentDetails = ({ formData, onChange }) => {
     <form onSubmit={handleSubmit}>
       <div className="form-container">
         <div className="price-section">
-          <h1>Price: INR {price.toFixed(2)}</h1>
+          {/* <h1>Price: $ {price.toFixed(2)}</h1> */}
         </div>
         <div className="inputBox">
           <span>Card accepted :</span>

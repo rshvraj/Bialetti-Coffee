@@ -18,7 +18,7 @@ const ThankYouPage = () => {
           color={"white"}
           display={"inline-block"}
         >
-          <Link href="/">Home Page</Link>
+          {/* <Link href="/">Home Page</Link> */}
         </Button>
       </Box>
     </div>

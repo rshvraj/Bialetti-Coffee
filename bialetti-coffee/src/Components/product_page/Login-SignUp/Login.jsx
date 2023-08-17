@@ -40,7 +40,7 @@ import {
             isClosable: true,
           })
           login()
-          Navigate("/")
+          Navigate("/products")
 
           
         }else if (userData.email !==email || userData.password!==password){
