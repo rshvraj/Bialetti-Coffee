@@ -140,7 +140,7 @@ const HomePage = () => {
                             borderRadius='lg'
                         />
                         <Stack mt='6' spacing='3'>
-                            <Heading size='md'>Coffee Beans-Delicato</Heading>
+                            <Heading size='md'>Coffee Beans Delicato</Heading>
                             <Text color='blue.600' fontSize='2xl'>
                                 $450
                             </Text>
