@@ -225,7 +225,7 @@ const Navbar = () => {
                                 transition: 'opacity 0.5s, transform 0.5s',
                             }}
                         >
-                            NEWS&BLOG
+                            NEWS & BLOG
                         </Box>
                         <Spacer />
                         <Box
